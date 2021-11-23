@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>코로나 19 사전 온라인 문진</title>
+<link rel="stylesheet" href="resources/main.css" type="text/css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
+<script>
+	window.onload = function() {
+		const one = document.getElementById("one")
+		const confirm_btn = document.getElementById("confirm_btn")
+		
+		confirm_btn.onclick = function() {
+			if(one.checked){
+				location.href="./register.html"
+			} else{
+				alert('개인정보 수집동의 항목을 체크해주세요.')
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	
+	<div class="content">
+		<div class="heading">코로나 19 사전 온라인 문진 주의사항</div>
+		<div class="box">
+			방문자 대상 코로나 19 의심환자 출입통제를 위한 문진에 협조하여 주셔서 감사합니다.<br><br>
+			✔️ 코로나 19 감염 예방을 위해 방문하는 모든 사람은 반드시 문진표를 작성하여 주시기 바랍니다.<br>
+			✔️ 최근 14일 이내 해외방문력이 있거나, 발열 또는 호흡기 증상이 있는경우 질병관리청(☎1339)나 거주지 관할 보건소에 연락하여 조치를 받으시기 바랍니다.<br><br>
+
+			1. 개인정보 수집, 이용 목적 : 코로나 19 확진자 관련 역학조사<br>
+			2. 수집하는 개인정보의 항목 : 이름, 연락처, 생년월일, 성별<br>
+			3. 개인정보의 보유 및 이용기간 : 15일<br>
+			4. 동의 거부권 및 동의거부에 따른 불이익 안내 : 본인은 위와 같이 개인정보 수집, 이용에 대한 동의를 거부할 권리가 있습니다. 그러나 동의하지 않을 경우, 코로나19 확진자와 <br>관련된 접촉자 조사대상에서 제외될 수 있음을 참고하시기 바랍니다.<br><br>
+
+			<label for="one">
+				<input id="one" type="checkbox">
+				<span>개인정보 수집동의</span>
+			</label>
+
+		</div>
+		<div style="text-align:center; margin-top: 20px">
+			<button id="confirm_btn">응답 시작</div>
+		</div>
+		
+	</div>
+
+</body>
+</html>
