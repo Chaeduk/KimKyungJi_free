@@ -155,6 +155,7 @@ public class QuestionnaireDAO {
 		String sql = "select * from questionnaire where no = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, no);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
 				user.setName(rs.getString("name"));
@@ -188,6 +189,23 @@ public class QuestionnaireDAO {
 	
 	public boolean update(QuestionnaireVO vo) {
 		connect();
+		String sql = "update questionnaire set name = ?, tel = ?, birth = ?, sex = ?, Q1 = ?, Q2 = ?, Q3 = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getName());
+			pstmt.setString(2, vo.getTel());
+			pstmt.setString(3, vo.getBirth());
+			pstmt.setString(4, vo.getSex());
+			pstmt.setBoolean(5, vo.getQ1());
+			pstmt.setBoolean(6, vo.getQ2());
+			pstmt.setBoolean(7, vo.getQ3());
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		} finally {
+			disconnect();
+		}
 		return true;
 	}
 	

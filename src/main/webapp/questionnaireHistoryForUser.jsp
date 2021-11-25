@@ -11,18 +11,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic:wght@700&display=swap" rel="stylesheet">
-<script>
-  function onClick(n,key){
-	  const form = document.createElement('form')
-	  const obj = document.createElement('input');
-	  obj.setAttribute('no', n)
-	  form.appendChild(obj)
-	  form.setAttribute('method', 'post')
-	  form.setAttribute('action', './QuestionnaireServlet?cmd=sort')
-	  document.body.appendChild(form)
-	  form.submit()
-  }
-</script>
 </head>
 <body>
 	<div class="content">
@@ -54,7 +42,7 @@
           <td><%=vo.getQ2() %></td>
           <td><%=vo.getQ3() %></td>
           <td><%=vo.getRegister_date() %></td>
-          <td><a href="javascript:onClick(<%=vo.getNo()%>);">수정하기</a></td>
+          <td><a href="./QuestionnaireServlet?cmd=edit&no=<%=vo.getNo()%>">수정하기</a></td>
         </tr>
         <%
         	}

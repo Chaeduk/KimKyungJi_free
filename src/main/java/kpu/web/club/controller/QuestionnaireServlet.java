@@ -80,6 +80,20 @@ public class QuestionnaireServlet extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
 				view.forward(request, response);
 			}
+		} else if(cmdReq.equals("edit")) {
+			QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
+			QuestionnaireVO user = questionnairedao.read(request.getParameter("no"));
+			if(user.getName() == null) {
+				msg = "잘못된 접근입니다.";
+				request.setAttribute("msg", msg);
+				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
+				view.forward(request, response);
+			} else {
+				request.setAttribute("user", user);
+				RequestDispatcher view = request.getRequestDispatcher("update.jsp");
+				view.forward(request, response);
+			}
+			
 		}
 	}
 
@@ -151,6 +165,18 @@ public class QuestionnaireServlet extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
 				view.forward(request, response);
 			}
+		} else if(cmdReq.equals("edit")) {
+			QuestionnaireVO questionnairevo = new QuestionnaireVO();
+			
+			questionnairevo.setName(request.getParameter("name"));
+			questionnairevo.setTel(request.getParameter("tel"));
+			questionnairevo.setBirth(request.getParameter("birth"));
+			questionnairevo.setSex(request.getParameter("sex"));
+			questionnairevo.setQ1(Boolean.parseBoolean(request.getParameter("Q1")));
+			questionnairevo.setQ2(Boolean.parseBoolean(request.getParameter("Q2")));
+			questionnairevo.setQ3(Boolean.parseBoolean(request.getParameter("Q3")));
+			
+			QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
 		}
 	}
 
