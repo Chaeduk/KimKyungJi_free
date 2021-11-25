@@ -69,11 +69,24 @@ public class QuestionnaireServlet extends HttpServlet {
 				view.forward(request, response);
 				
 			} else if(session.getAttribute("id").equals("admin")) {
-				QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
-				ArrayList<QuestionnaireVO> userlist = questionnairedao.getSortedUser();
-				request.setAttribute("userlist", userlist);
-				RequestDispatcher view = request.getRequestDispatcher("questionnaireHistoryForAdmin.jsp");
-				view.forward(request, response);
+				if(request.getParameter("par").equals("false")) {
+					QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
+					ArrayList<QuestionnaireVO> userlist = questionnairedao.getSortedUser();
+					request.setAttribute("userlist", userlist);
+					request.setAttribute("par", true);
+					request.setAttribute("btnValue", "전체 대상자 보기");
+					RequestDispatcher view = request.getRequestDispatcher("questionnaireHistoryForAdmin.jsp");
+					view.forward(request, response);
+				} else if(request.getParameter("par").equals("true")) {
+					QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
+					ArrayList<QuestionnaireVO> userlist = questionnairedao.getAllUserlist();
+					request.setAttribute("userlist", userlist);
+					request.setAttribute("par", false);
+					request.setAttribute("btnValue", "의심 대상자만 보기");
+					RequestDispatcher view = request.getRequestDispatcher("questionnaireHistoryForAdmin.jsp");
+					view.forward(request, response);
+				}
+				
 			} else {
 				msg = "잘못된 접근입니다.";
 				request.setAttribute("msg", msg);
@@ -157,6 +170,8 @@ public class QuestionnaireServlet extends HttpServlet {
 				}
 				ArrayList<QuestionnaireVO> userlist = questionnairedao.getAllUserlist();
 				request.setAttribute("userlist", userlist);
+				request.setAttribute("par", false);
+				request.setAttribute("btnValue", "의심 대상자만 보기");
 				RequestDispatcher view = request.getRequestDispatcher("questionnaireHistoryForAdmin.jsp");
 				view.forward(request, response);
 			} else {
@@ -177,6 +192,17 @@ public class QuestionnaireServlet extends HttpServlet {
 			questionnairevo.setQ3(Boolean.parseBoolean(request.getParameter("Q3")));
 			
 			QuestionnaireDAO questionnairedao = new QuestionnaireDAO();
+			if(questionnairedao.update(questionnairevo)) {
+				msg = request.getParameter("name") +"님, 수정을 완료하였습니다.";
+				request.setAttribute("msg", msg);
+				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
+				view.forward(request, response);
+			} else {
+				msg = "오류가 발생하였습니다. 다시시도해주세요.";
+				request.setAttribute("msg", msg);
+				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
+				view.forward(request, response);
+			}
 		}
 	}
 
