@@ -2,6 +2,7 @@
 <%@page import="kpu.web.club.domain.QuestionnaireVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mytag" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,40 +16,7 @@
 <body>
 	<div class="content">
 		<div class="heading"><%=request.getAttribute("name") %>님의 문진표 작성 내역</div>
-      <table style="margin-left: auto; margin-right: auto; text-align: center width=100%" border="1" >
-        <tr>
-          <th>번호</th>
-          <th>이름</th>
-          <th>전화번호</th>
-          <th>생년월일</th>
-          <th>성별</th>
-          <th>질문1</th>
-          <th>질문2</th>
-          <th>질문3</th>
-          <th>작성날짜</th>
-          <th>수정하기</th>
-        </tr>
-        <%
-        	List<QuestionnaireVO> userlist = (List<QuestionnaireVO>) request.getAttribute("userlist");
-        	for(QuestionnaireVO vo : userlist){
-        %>
-        <tr>
-          <td><%=vo.getNo() %></td>
-          <td><%=vo.getName() %></td>
-          <td><%=vo.getTel() %></td>
-          <td><%=vo.getBirth() %></td>
-          <td><%=vo.getSex() %></td>
-          <td><%=vo.getQ1() %></td>
-          <td><%=vo.getQ2() %></td>
-          <td><%=vo.getQ3() %></td>
-          <td><%=vo.getRegister_date() %></td>
-          <td><a href="./QuestionnaireServlet?cmd=edit&no=<%=vo.getNo()%>">수정하기</a></td>
-        </tr>
-        <%
-        	}
-        %>
-      </table>
-
+	  <mytag:item/>
       <div style="text-align:center; margin-top: 20px; margin-bottom: 50px;">
 				<button id="home_btn" onclick="location.href='./main.html'">처음으로</button>
 	  </div>

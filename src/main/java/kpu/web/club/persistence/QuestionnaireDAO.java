@@ -189,7 +189,7 @@ public class QuestionnaireDAO {
 	
 	public boolean update(QuestionnaireVO vo) {
 		connect();
-		String sql = "update questionnaire set name = ?, tel = ?, birth = ?, sex = ?, Q1 = ?, Q2 = ?, Q3 = ?";
+		String sql = "update questionnaire set name = ?, tel = ?, birth = ?, sex = ?, Q1 = ?, Q2 = ?, Q3 = ? where no = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, vo.getName());
@@ -199,6 +199,7 @@ public class QuestionnaireDAO {
 			pstmt.setBoolean(5, vo.getQ1());
 			pstmt.setBoolean(6, vo.getQ2());
 			pstmt.setBoolean(7, vo.getQ3());
+			pstmt.setString(8, vo.getNo());
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();

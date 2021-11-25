@@ -16,7 +16,7 @@
 	<div class="content">
 		<div class="heading">관리자 페이지</div>
       <div style="width: 100%; text-align: right; margin-bottom: 7px;">
-        <button class="control_btn" style="width: 180px" onclick="location.href='./QuestionnaireServlet?cmd=sort&par=${ par}'"><%=request.getAttribute("btnValue") %></button>
+        <button class="control_btn" style="width: 180px" onclick="location.href='./QuestionnaireServlet?cmd=sort&par=${par}'">${btnValue}</button>
         <button class="control_btn" onclick="location.href='./QuestionnaireServlet?cmd=delete'">내역 삭제</button>
       </div>
       <table style="margin-left: auto; margin-right: auto; text-align: center width=100%" border="1" >

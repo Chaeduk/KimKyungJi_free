@@ -13,7 +13,7 @@
 <body>
     <div class="content">
         <div class="heading">
-            <%=request.getAttribute("msg") %>
+        	${msg}
         </div>
         <div style="text-align:center; margin-top: 20px">
 			<button id="confirm_btn" onclick="location.href='main.html'">처음으로</button>

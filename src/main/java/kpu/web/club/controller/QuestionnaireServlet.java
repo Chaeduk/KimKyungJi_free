@@ -102,6 +102,7 @@ public class QuestionnaireServlet extends HttpServlet {
 				RequestDispatcher view = request.getRequestDispatcher("message.jsp");
 				view.forward(request, response);
 			} else {
+				user.setNo(request.getParameter("no"));
 				request.setAttribute("user", user);
 				RequestDispatcher view = request.getRequestDispatcher("update.jsp");
 				view.forward(request, response);
@@ -183,6 +184,7 @@ public class QuestionnaireServlet extends HttpServlet {
 		} else if(cmdReq.equals("edit")) {
 			QuestionnaireVO questionnairevo = new QuestionnaireVO();
 			
+			questionnairevo.setNo(request.getParameter("no"));
 			questionnairevo.setName(request.getParameter("name"));
 			questionnairevo.setTel(request.getParameter("tel"));
 			questionnairevo.setBirth(request.getParameter("birth"));
